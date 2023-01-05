@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Potta+One&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Potta One", cursive;
+  background-image: linear-gradient(0deg, white, pink);
+  /* 0deg --> 0 degree */
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+}
+
+.music-container {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 20px 20px 0 rgba(255, 192, 203, 0.75);
+
+  display: flex;
+  padding: 20px 30px;
+
+  position: relative;
+  margin: 80px 0;
+  z-index: 5;
+}
+
+.img-container {
+  position: relative;
+  width: 175px;
+}
+
+.img-container img {
+  height: 175px;
+  width: inherit;
+  border-radius: 50%;
+
+  object-fit: cover;
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+
+  /* set hiệu ứng rotate (@keyframes) 9s (thời gian chuyển động) linear infinite (chỉ có thể dừng lại khi nhấn nút) */
+  animation: rotate 15s linear infinite;
+  animation-play-state: paused;
+}
+
+.music-container.play .img-container img {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.action-btn {
+  background-color: #fff;
+  border: 0;
+  color: bisque;
+  font-size: 24px;
+  cursor: pointer;
+
+  padding: 10px;
+  margin: 0 20px;
+}
+
+.action-btn.action-btn-big {
+  font-size: 36px;
+  color: burlywood;
+}
+
+.action-btn:focus {
+  outline: 0;
+}
+
+.music-info {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px 15px 15px 0;
+  
+  position: absolute;
+  top: 0;
+  left: 50px;
+  width: calc(
+    100% - 50px
+  ); /* calc = calculation --> tính toán chiều rộng từ Hết chiều dài trừ đi 40px */
+
+  padding: 10px 20px 10px 195px;
+  opacity: 0;
+
+  transform: translateY(0%);
+
+  /* ease-in hiệu ứng trồi lên */
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  z-index: 0;
+}
+
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.music-info h4 {
+  margin: 0;
+  font-weight: 300;
+}
+
+.progress-container {
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+
+  margin: 10px 0;
+  height: 4px;
+  width: 100%;
+}
+
+.time{
+  display: flex;
+  margin-left: -8px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+.progress {
+  background-color: deeppink;
+  border: 5px;
+  height: 100%;
+  width: 0%;
+
+  transition: width 0.1s linear;
+}
+
+.progress-time, .timeLeft{
+  font-size: 8px;
+  font-weight: 100;
+  color: darkgray;
+
+  height: 4px;
+  width: 100%;
+}
+.timeLeft {
+  margin-right: -13px;
+  text-align: right;
+}
